@@ -40,6 +40,11 @@
 
 		function iguales(ev){
 			var aux="";
+			pieza = ev.target.innerHTML;
+			aux = ev.target.innerHTML;
+			if (pieza == aux) {
+				document.getElementById("h3").innerText += 1;
+			}
 			console.log(ev.target.innerText);
 			
 		}
