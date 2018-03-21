@@ -1,0 +1,97 @@
+<html>
+	<head>
+	<script>
+		var seleccionado = false;
+		var pieza;
+
+		function cualImagen( fila, col ){
+			var imagenes = [ 
+				"1.png",
+				"2.png",
+				"3.png",
+				"4.png",
+				"5.png",
+				"6.png",
+				"7.png",
+				"8.png",
+				"9.png",
+				"10.png"
+			];
+			var pos = (fila+1)*5 + col;
+			return "img/" + imagenes[ pos % 10 ];
+		}
+
+		function htmlCarta( fila, col ){
+			return '<div><img src="' + cualImagen(fila,col) + '"></div>';
+		}
+
+		function repartir(){
+			var cartas="";
+			for( var fila = 0; fila < 4; fila++){
+				creardiv();
+				for( var col = 0; col < 5; col++){
+					cartas += htmlCarta( fila, col );
+				}
+			}
+			var tab = document.getElementById("tablero");
+			tab.innerHTML = cartas;
+		}	
+
+		function iguales(ev){
+			var aux="";
+			console.log(ev.target.innerText);
+			
+		}
+
+		function creardiv(){
+			var elem = document.createElement("div");
+			var currentDiv = document.getElementById("tablero");
+			document.body.insertBefore(elem, currentDiv);
+		}
+	</script>
+
+	<style>
+		#tablero > div {
+			display: inline-block;
+			width: 120px;
+			padding: 0px 5px 5px 5px; 
+			height: 120px;
+		}
+
+		#tablero img
+		{
+			visibility: visible;
+		}	
+
+		#tablero div
+		{
+			background-color: indigo;
+			padding: 4px;
+			border-width: 5px;
+			margin: 8px;
+		}
+
+		#puntaje {
+			width: 200px;
+			height: 60px;
+			border-style: solid;
+			border-color: black;
+			margin: 8px; 
+		}
+	</style>
+
+	</head>
+
+	<body>
+	<button onclick="repartir()">Repartir</button>
+
+	<div id="tablero" onclick="iguales(event)">
+
+	</div>
+
+	<div id="puntaje">
+		
+	</div>
+
+	</body>
+</html>
